@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import L from 'leaflet';
 
 //pixi-overlay
-import PIXI from 'pixi.js';
+import * as PIXI from 'pixi.js';
 import 'leaflet-pixi-overlay';
 
 import { useLeafletMap } from 'use-leaflet';
