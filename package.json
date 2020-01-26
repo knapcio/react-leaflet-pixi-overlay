@@ -1,0 +1,27 @@
+{
+  "name": "react-leaflet-pixi-overlay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knapcio/react-leaflet-pixi-overlay.git"
+  },
+  "author": "Zbigniew Majewski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/knapcio/react-leaflet-pixi-overlay/issues"
+  },
+  "homepage": "https://github.com/knapcio/react-leaflet-pixi-overlay#readme",
+  "dependencies": {
+    "leaflet": "^1.6.0",
+    "leaflet-pixi-overlay": "^1.8.1",
+    "pixi.js": "^5.2.0",
+    "react": "^16.12.0",
+    "react-leaflet": "^2.6.1",
+    "use-leaflet": "^1.6.1"
+  }
+}
