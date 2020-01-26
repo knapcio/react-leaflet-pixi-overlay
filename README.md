@@ -17,42 +17,43 @@ import { PixiOverlay } from 'react-leaflet-pixi-overlay';
 import { Map } from 'react-leaflet';
 import { renderToString } from 'react-dom/server';
 
-const App = ({}) => {
+const App = () => {
 
-const markers = [{
-    id: 'randomStringOrNumber',
-    iconColor: 'red', // colors: https://github.com/pointhi/leaflet-color-markers
-    position: [-37.814, 144.96332],
-    popup: renderToString(
-      <div>All good!</div>
-    ),
-    onClick: () => alert('marker clicked'),
-    tooltip: 'Hey!',
-},
-{
-    id: '2',
-    position: [-37.814, 144.96332],
-    popup: 'Quack!',
-    popupOpen: true, // if popup has to be open by default
-    onClick: () => alert('marker clicked'),
-    tooltip: 'Nice!',
-}
-];
+    const markers = [{
+            id: 'randomStringOrNumber',
+            iconColor: 'red', // colors: https://github.com/pointhi/leaflet-color-markers
+            position: [-37.814, 144.96332],
+            popup: renderToString(
+              <div>All good!</div>
+            ),
+            onClick: () => alert('marker clicked'),
+            tooltip: 'Hey!',
+        },
+        {
+            id: '2',
+            position: [-37.814, 144.96332],
+            popup: 'Quack!',
+            popupOpen: true, // if popup has to be open by default
+            onClick: () => alert('marker clicked'),
+            tooltip: 'Nice!',
+        }
+    ];
 
-return {
-    <Map
-        preferCanvas={true}
-        maxZoom={20}
-        minZoom={3}
-        center={[-37.814, 144.96332]}
-        // Other map props...
-    >
-        <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-        <PixiOverlay markers={markers} />
-    </Map>
+    return {
+        <Map
+            preferCanvas={true}
+            maxZoom={20}
+            minZoom={3}
+            center={[-37.814, 144.96332]}
+            // Other map props...
+        >
+            <TileLayer
+                url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <PixiOverlay markers={markers} />
+        </Map>
+    };
 }
 ```
 
