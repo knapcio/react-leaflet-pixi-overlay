@@ -3,21 +3,16 @@ import { useEffect, useState } from 'react';
 import L from 'leaflet';
 
 //pixi-overlay
-import PIXIContainer from 'pixi.js/lib/core/display/Container';
-import PIXISprite from 'pixi.js/lib/core/sprites/Sprite';
-import { skipHello as PIXISkipHello } from 'pixi.js/lib/core/utils/';
-
-import { Loader as PIXILoaderBase } from 'pixi.js/lib/loaders/';
+import PIXI from 'pixi.js';
 import 'leaflet-pixi-overlay';
 
 import { useLeafletMap } from 'use-leaflet';
 
-PIXISkipHello();
+PIXI.utils.skipHello();
+const PIXILoader = PIXI.Loader.shared;
 
 // https://github.com/pointhi/leaflet-color-markers
 const getDefaultMarkerUrl = (color = 'red') => `https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-${color}.png`;
-
-const PIXILoader = new PIXILoaderBase();
 
 const PixiOverlay = ({
 	markers,
@@ -50,7 +45,7 @@ const PixiOverlay = ({
 
 	// load pixi when map changes
 	useEffect(() => {
-		let pixiContainer = new PIXIContainer();
+		let pixiContainer = new PIXI.Container();
 		let overlay = L.pixiOverlay(utils => {
 			// redraw markers
 			const scale = utils.getScale();
@@ -84,7 +79,7 @@ const PixiOverlay = ({
 
 				markerTexture.anchor = { x: 0.5, y: 1 };
 
-				const markerSprite = new PIXISprite(markerTexture);
+				const markerSprite = new PIXI.Sprite(markerTexture);
 				markerSprite.anchor.set(0.5, 1);
 
 				const markerCoords = project(position);
