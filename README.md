@@ -4,10 +4,8 @@ A react wrapper for the awesome Pixi Overlay: https://github.com/manubb/Leaflet.
 
 ## Installing
 
-Not added to npm yet:
-
 ```
-yarn add https://github.com/knapcio/react-leaflet-pixi-overlay
+yarn add react-leaflet-pixi-overlay
 ```
 
 ## Example
