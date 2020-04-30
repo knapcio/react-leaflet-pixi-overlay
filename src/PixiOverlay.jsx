@@ -14,6 +14,13 @@ const PIXILoader = PIXI.Loader.shared;
 // https://github.com/pointhi/leaflet-color-markers
 const getDefaultMarkerUrl = (color = 'red') => `https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-${color}.png`;
 
+function getIcon (color) {
+	const svgIcon = `<svg style="-webkit-filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .4));filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .4));" xmlns="http://www.w3.org/2000/svg" fill="${color}" width="36" height="36" viewBox="0 0 24 24"><path d="M12 0c-4.198 0-8 3.403-8 7.602 0 6.243 6.377 6.903 8 16.398 1.623-9.495 8-10.155 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.342-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>`;
+	const decoded = unescape(encodeURIComponent(svgIcon));
+	const base64 = btoa(decoded);
+	return `data:image/svg+xml;base64,${base64}`;
+}
+
 const PixiOverlay = ({
 	markers,
 }) => {
@@ -29,19 +36,25 @@ const PixiOverlay = ({
 
 	// load sprites
 	useEffect(() => {
-		if (!PIXILoader.resources.red) {
-			PIXILoader
-				.add('red', getDefaultMarkerUrl())
-				.add('gold', getDefaultMarkerUrl('gold'))
-				.add('grey', getDefaultMarkerUrl('grey'))
-				.add('blue', getDefaultMarkerUrl('blue'))
-				.add('green', getDefaultMarkerUrl('green'))
-				.load(() => setLoaded(true));
+		let loadingAny = false;
+		for(let marker of markers) {
+			if(!marker.iconColor || PIXILoader.resources[`marker_${marker.iconColor}`]) {
+				continue;
+			}
+			loadingAny = true;
+			PIXILoader.add(`marker_${marker.iconColor}`, marker.svg ? getIcon(marker.iconColor) : getDefaultMarkerUrl(marker.iconColor));
+		}
+		if(loaded && loadingAny) {
+			setLoaded(false);
+		}
+
+		if(loadingAny) {
+			PIXILoader.load(() => setLoaded(true));
 		}
 		else {
 			setLoaded(true);
 		}
-	}, []);
+	}, [markers]);
 
 	// load pixi when map changes
 	useEffect(() => {
@@ -74,12 +87,16 @@ const PixiOverlay = ({
 			markers.forEach(marker => {
 				const { id, iconColor = 'red', onClick, position, popup, tooltip, popupOpen } = marker;
 
-				const markerTexture = PIXILoader.resources[iconColor].texture;
+				if(!PIXILoader.resources[`marker_${iconColor}`] || !PIXILoader.resources[`marker_${iconColor}`].texture) {
+					return;
+				}
+
+				const markerTexture = PIXILoader.resources[`marker_${iconColor}`].texture;
 				//const markerTexture = new PIXI.Texture.fromImage(url);
 
 				markerTexture.anchor = { x: 0.5, y: 1 };
 
-				const markerSprite = new PIXI.Sprite(markerTexture);
+				const markerSprite = PIXI.Sprite.from(markerTexture);
 				markerSprite.anchor.set(0.5, 1);
 
 				const markerCoords = project(position);
@@ -91,7 +108,7 @@ const PixiOverlay = ({
 				if (popupOpen) {
 					setOpenedPopupData({
 						id,
-						offset: [0, -35],
+						offset: [0, -25],
 						position,
 						content: popup,
 						onClick,
@@ -117,7 +134,7 @@ const PixiOverlay = ({
 					markerSprite.on('mouseover', () => {
 						setOpenedTooltipData({
 							id,
-							offset: [0, -35],
+							offset: [0, -25],
 							position,
 							content: tooltip,
 						});
