@@ -68,7 +68,7 @@ const App = () => {
 | onClick | no      |    Function |
 | tooltip | no      |    String |
 | customIcon | no      |    String |
-| iconId | yes/no      |    String; Rquired only if using customIcon |
+| iconId | yes/no      |    String; Required only if using customIcon |
 
 ## Result
 
