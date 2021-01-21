@@ -17,11 +17,18 @@
   },
   "homepage": "https://github.com/knapcio/react-leaflet-pixi-overlay#readme",
   "dependencies": {
-    "leaflet": "^1.6.0",
     "leaflet-pixi-overlay": "^1.8.1",
     "pixi.js": "^5.2.0",
+    "use-leaflet": "^1.6.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "leaflet": ">=1.2.0",
+    "react-leaflet": ">=2"
+  },
+  "devDependencies": {
     "react": "^16.12.0",
     "react-leaflet": "^2.6.1",
-    "use-leaflet": "^1.6.1"
+    "leaflet": "^1.6.0",
   }
 }
