@@ -80,7 +80,7 @@ const PixiOverlay = ({
 			let scale = utils.getScale();
 
 			markers.forEach(marker => {
-				const { id, iconColor, iconId, onClick, position, popup, tooltip, popupOpen } = marker;
+				const { id, iconColor, iconId, onClick, position, popup, tooltip, popupOpen, markerSpriteAnchor } = marker;
 
 				const resolvedIconId = iconId || iconColor;
 
@@ -94,7 +94,11 @@ const PixiOverlay = ({
 				markerTexture.anchor = { x: 0.5, y: 1 };
 
 				const markerSprite = PIXI.Sprite.from(markerTexture);
-				markerSprite.anchor.set(0.5, 1);
+        if (markerSpriteAnchor) {
+          markerSprite.anchor.set(markerSpriteAnchor[0], markerSpriteAnchor[1]);
+        } else {
+          markerSprite.anchor.set(0.5, 1);
+        }
 
 				const markerCoords = project(position);
 				markerSprite.x = markerCoords.x;
