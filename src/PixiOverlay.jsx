@@ -190,7 +190,7 @@ const PixiOverlay = ({
 };
 
 function openPopup (map, data, extraOptions = {}, isPopup) {
-	const popup = L.popup({ offset: data.offset, ...extraOptions })
+	const popup = L.popup(Object.assign({ offset: data.offset }, extraOptions))
 		.setLatLng(data.position)
 		.setContent(data.content)
 		.openOn(map);

@@ -11,7 +11,7 @@ yarn add react-leaflet-pixi-overlay
 ## Example
 
 ```js
-import { PixiOverlay } from 'react-leaflet-pixi-overlay';
+import PixiOverlay from 'react-leaflet-pixi-overlay';
 import { Map } from 'react-leaflet';
 import { renderToString } from 'react-dom/server';
 
