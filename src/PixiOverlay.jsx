@@ -27,6 +27,11 @@ const PixiOverlay = ({
 
 	// load sprites
 	useEffect(() => {
+		// cancel loading if already loading as it may cause: Error: Cannot add resources while the loader is running.
+		if (PIXILoader.loading) {
+			PIXILoader.reset();
+		}
+
 		let loadingAny = false;
 		for(let marker of markers) {
 			const resolvedMarkerId = marker.iconId || marker.iconColor;
@@ -36,6 +41,7 @@ const PixiOverlay = ({
 				continue;
 			}
 			loadingAny = true;
+
 			PIXILoader.add(`marker_${resolvedMarkerId}`,
 				marker.customIcon ? getEncodedIcon(marker.customIcon) : getDefaultIcon(marker.iconColor));
 		}

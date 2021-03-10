@@ -70,6 +70,11 @@ var PixiOverlay = function PixiOverlay(_ref) {
 
 	// load sprites
 	(0, _react.useEffect)(function () {
+		// cancel loading if already loading as it may cause: Error: Cannot add resources while the loader is running.
+		if (PIXILoader.loading) {
+			PIXILoader.reset();
+		}
+
 		var loadingAny = false;
 		var _iteratorNormalCompletion = true;
 		var _didIteratorError = false;
@@ -86,6 +91,7 @@ var PixiOverlay = function PixiOverlay(_ref) {
 					continue;
 				}
 				loadingAny = true;
+
 				PIXILoader.add('marker_' + resolvedMarkerId, marker.customIcon ? getEncodedIcon(marker.customIcon) : getDefaultIcon(marker.iconColor));
 			}
 		} catch (err) {
