@@ -88,6 +88,38 @@ const markers = [
 ];
 ```
 
+## Contribution guidelines
+
+To contribute to project codebase, fork the repo and create Pull
+Requests pointing to master branch.
+
+### Local setup
+
+The best way to run and develop the package is to import the local clone to
+local react project. It can be done with help of yarn link functionality. All
+peer dependencies must be linked. Here is how to do it:
+
+```
+cd YOUR_CLONNED_REACT_LEAFLET_PIXI_OVERLAY_FORK
+yarn link
+yarn install
+cd node_modules/react
+yarn link
+cd ../react-dom
+yarn link
+cd ../leaflet
+yarn link
+cd ../react-leaflet
+yarn link
+
+cd YOUR_REACT_PROJECT
+yarn link react-leaflet-pixi-overlay
+yarn link react
+yarn link react-dom
+```
+
+To compile any changes introduced to code, run `yarn build`.
+
 ## License
 
 This project is licensed under the MIT License.
