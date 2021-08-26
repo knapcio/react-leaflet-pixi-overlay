@@ -127,7 +127,20 @@ const PixiOverlay = ({
 				}
 
 				if (popup || onClick) {
-					markerSprite.on('click', () => {
+					// Prevent launchung the onClick event when drag and drop.
+          let applyOnClick = true
+          markerSprite.on('mousedown', () => {
+            markerSprite.on('mousemove', () => {
+              applyOnClick = false
+            })
+            markerSprite.on('mouseup', () => {
+              if (applyOnClick && onClick) {
+                onClick(id)
+              }
+            })
+          })
+
+          markerSprite.on('tap', () => {
 						if (onClick) {
 							onClick(id);
 						}
