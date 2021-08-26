@@ -139,11 +139,16 @@ const PixiOverlay = ({
               }
             })
           })
-
-          markerSprite.on('tap', () => {
-						if (onClick) {
-							onClick(id);
-						}
+					// Prevent the same thing for touch devices.
+          markerSprite.on('touchstart', () => {
+            markerSprite.on('touchmove', () => {
+              applyOnClick = false
+            })
+            markerSprite.on('touchend', () => {
+              if (applyOnClick && onClick) {
+                onClick(id)
+              }
+            })
 					});
 
 					markerSprite.defaultCursor = 'pointer';
