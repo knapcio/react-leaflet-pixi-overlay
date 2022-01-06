@@ -8,6 +8,11 @@ A react wrapper for the awesome Pixi Overlay: https://github.com/manubb/Leaflet.
 yarn add react-leaflet-pixi-overlay
 ```
 
+| react-leaflet | react-leaflet-pixi-overlay |
+| ------------- | -------------------------- |
+| v2.x          | v1.0                       |
+| v3.x          | v3.x                       |
+
 ## Example
 
 ```jsx
