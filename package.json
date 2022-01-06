@@ -17,15 +17,22 @@
     "url": "https://github.com/knapcio/react-leaflet-pixi-overlay/issues"
   },
   "homepage": "https://github.com/knapcio/react-leaflet-pixi-overlay#readme",
+  "prettier": {
+    "prettier.eslintIntegration": false,
+    "semi": true,
+    "trailingComma": "all",
+    "singleQuote": false,
+    "printWidth": 80,
+    "tabWidth": 2
+  },
   "dependencies": {
     "leaflet-pixi-overlay": "^1.8.1",
-    "pixi.js": "^5.2.0",
-    "use-leaflet": "^1.6.1"
+    "pixi.js": "^5.2.0"
   },
   "peerDependencies": {
     "leaflet": ">=1.2.0",
     "react": ">=16.8.0",
-    "react-leaflet": ">=2"
+    "react-leaflet": ">=2.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
