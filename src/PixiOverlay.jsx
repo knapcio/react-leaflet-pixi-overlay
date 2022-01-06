@@ -7,7 +7,7 @@ import * as PIXI from "pixi.js";
 import "leaflet-pixi-overlay";
 
 // react-leaflet
-import { useLeaflet } from "react-leaflet";
+import { useMap } from "react-leaflet";
 
 PIXI.settings.FAIL_IF_MAJOR_PERFORMANCE_CAVEAT = false;
 PIXI.utils.skipHello();
@@ -22,7 +22,16 @@ const PixiOverlay = ({ markers }) => {
 
   const [pixiOverlay, setPixiOverlay] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const { map } = useLeaflet();
+  const map = useMap();
+
+  if (map.getZoom() === undefined) {
+    // this if statment is to avoid getContainer error
+    // map must have zoom prop
+    console.error(
+      "no zoom found, add zoom prop to map to avoid getContainer error",
+    );
+    return null;
+  }
 
   // load sprites
   useEffect(() => {
@@ -202,7 +211,6 @@ const PixiOverlay = ({ markers }) => {
     return () =>
       pixiOverlay && pixiOverlay.utils.getContainer().removeChildren();
   }, [pixiOverlay, markers, loaded]);
-
   // handle tooltip
   useEffect(() => {
     if (openedTooltip) {

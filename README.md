@@ -10,50 +10,53 @@ yarn add react-leaflet-pixi-overlay
 
 ## Example
 
-```js
-import PixiOverlay from 'react-leaflet-pixi-overlay';
-import { Map } from 'react-leaflet';
-import { renderToString } from 'react-dom/server';
+```jsx
+import { TileLayer, MapContainer } from "react-leaflet";
+import PixiOverlay from "react-leaflet-pixi-overlay";
+import { renderToString } from "react-dom/server";
+import "leaflet/dist/leaflet.css";
+import "./app.css";
 
 const App = () => {
+  const markers = [
+    {
+      id: "randomStringOrNumber",
+      iconColor: "red",
+      position: [-37.814, 144.96332],
+      popup: renderToString(<div>All good!</div>),
+      onClick: () => alert("marker clicked"),
+      tooltip: "Hey!",
+    },
+    {
+      id: "2",
+      iconColor: "blue",
+      position: [-37.814, 144.96332],
+      popup: "Quack!",
+      popupOpen: true, // if popup has to be open by default
+      onClick: () => alert("marker clicked"),
+      tooltip: "Nice!",
+    },
+  ];
 
-    const markers = [{
-            id: 'randomStringOrNumber',
-            iconColor: 'red',
-            position: [-37.814, 144.96332],
-            popup: renderToString(
-              <div>All good!</div>
-            ),
-            onClick: () => alert('marker clicked'),
-            tooltip: 'Hey!',
-        },
-        {
-            id: '2',
-            iconColor: 'blue',
-            position: [-37.814, 144.96332],
-            popup: 'Quack!',
-            popupOpen: true, // if popup has to be open by default
-            onClick: () => alert('marker clicked'),
-            tooltip: 'Nice!',
-        }
-    ];
+  return (
+    <MapContainer
+      zoom={18} // initial zoom required
+      preferCanvas
+      maxZoom={20} // required
+      minZoom={3} // required
+      center={[-37.814, 144.96332]}
+      // Other map props...
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <PixiOverlay markers={markers} />
+    </MapContainer>
+  );
+};
 
-    return {
-        <Map
-            preferCanvas={true}
-            maxZoom={20}
-            minZoom={3}
-            center={[-37.814, 144.96332]}
-            // Other map props...
-        >
-            <TileLayer
-                url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-            <PixiOverlay markers={markers} />
-        </Map>
-    };
-}
+export default App;
 ```
 
 ## Marker object props
