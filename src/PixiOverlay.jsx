@@ -192,7 +192,7 @@ const PixiOverlay = ({ markers }) => {
           markerSprite.on("mouseover", () => {
             setOpenedTooltipData({
               id,
-              offset: [0, -35],
+              offset: tooltipOffset || [0, -35],
               position,
               content: tooltip,
             });

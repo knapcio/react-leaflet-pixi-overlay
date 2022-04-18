@@ -172,6 +172,7 @@ var PixiOverlay = function PixiOverlay(_ref) {
             position = marker.position,
             popup = marker.popup,
             tooltip = marker.tooltip,
+            tooltipOffset = marker.tooltipOffset,
             popupOpen = marker.popupOpen,
             markerSpriteAnchor = marker.markerSpriteAnchor;
 
@@ -203,7 +204,7 @@ var PixiOverlay = function PixiOverlay(_ref) {
         if (popupOpen) {
           setOpenedPopupData({
             id: id,
-            offset: [0, -35],
+            offset: tooltipOffset || [0, -35],
             position: position,
             content: popup,
             onClick: onClick
@@ -249,7 +250,7 @@ var PixiOverlay = function PixiOverlay(_ref) {
           markerSprite.on("mouseover", function () {
             setOpenedTooltipData({
               id: id,
-              offset: [0, -35],
+              offset: tooltipOffset || [0, -35],
               position: position,
               content: tooltip
             });
