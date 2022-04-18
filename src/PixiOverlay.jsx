@@ -110,6 +110,7 @@ const PixiOverlay = ({ markers }) => {
           position,
           popup,
           tooltip,
+          tooltipOffset,
           popupOpen,
           markerSpriteAnchor,
         } = marker;
@@ -145,7 +146,7 @@ const PixiOverlay = ({ markers }) => {
         if (popupOpen) {
           setOpenedPopupData({
             id,
-            offset: [0, -35],
+            offset: tooltipOffset || [0, -35],
             position,
             content: popup,
             onClick,
