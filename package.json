@@ -1,6 +1,7 @@
 {
   "name": "@knapcio/react-leaflet-pixi-overlay",
-  "description": "3.1.0",
+  "version": "3.0.1",
+  "description": "",
   "main": "build/PixiOverlay.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
