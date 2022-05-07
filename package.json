@@ -1,5 +1,5 @@
 {
-  "name": "@knapcio/react-leaflet-pixi-overlay",
+  "name": "react-leaflet-pixi-overlay",
   "version": "3.0.1",
   "description": "",
   "main": "build/PixiOverlay.js",
