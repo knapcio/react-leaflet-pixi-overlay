@@ -172,6 +172,7 @@ var PixiOverlay = function PixiOverlay(_ref) {
             position = marker.position,
             popup = marker.popup,
             tooltip = marker.tooltip,
+            tooltipOptions = marker.tooltipOptions,
             popupOpen = marker.popupOpen,
             markerSpriteAnchor = marker.markerSpriteAnchor;
 
@@ -251,7 +252,8 @@ var PixiOverlay = function PixiOverlay(_ref) {
               id: id,
               offset: [0, -35],
               position: position,
-              content: tooltip
+              content: tooltip,
+              tooltipOptions: tooltipOptions || {}
             });
           });
 
@@ -277,7 +279,7 @@ var PixiOverlay = function PixiOverlay(_ref) {
     }
 
     if (openedTooltipData && (!openedPopup || !openedPopupData || openedPopupData.id !== openedTooltipData.id)) {
-      setOpenedTooltip(openPopup(map, openedTooltipData));
+      setOpenedTooltip(openTooltip(map, openedTooltipData));
     }
 
     // we don't want to reload when openedTooltip changes as we'd get a loop
@@ -317,6 +319,12 @@ function openPopup(map, data) {
   }
 
   return popup;
+}
+
+function openTooltip(map, data) {
+  var tooltip = _leaflet2.default.tooltip(Object.assign({ offset: data.offset }, data.tooltipOptions)).setLatLng(data.position).setContent(data.content).addTo(map);
+
+  return tooltip;
 }
 
 function getDefaultIcon(color) {

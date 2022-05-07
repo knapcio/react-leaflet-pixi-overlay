@@ -1,6 +1,6 @@
 {
-  "name": "react-leaflet-pixi-overlay",
-  "version": "3.0.0",
+  "name": "@alirezafarin/react-leaflet-pixi-overlay",
+  "version": "2.0.1",
   "description": "",
   "main": "build/PixiOverlay.js",
   "scripts": {

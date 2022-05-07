@@ -1,6 +1,7 @@
 # react-leaflet-pixi-overlay
 
-A react wrapper for the awesome Pixi Overlay: https://github.com/manubb/Leaflet.PixiOverlay
+A react wrapper for the awesome Pixi Overlay: https://github.com/manubb/Leaflet.PixiOverlay.
+With the option to change tooltip ui display.
 
 ## Installing
 
@@ -77,8 +78,9 @@ export default App;
 | tooltip            |    no    |                                                             String |
 | customIcon         |    no    |                                                             String |
 | iconId             |  yes/no  |                          String; Required only if using customIcon |
-| markerSpriteAnchor |    no    |          number[] useful for marker icon calibration `ex: [0.5,1]` |
-
+| markerSpriteAnchor |    no    |          number[] useful for marker icon calibration `ex: [0.5,1]` | 
+| tooltipOptions     |    no    | Leaflet.TooltipOptions -> { opacity: 0.5, offset: [0, 0], ... } 
+|
 ## Result
 
 ![Map](https://i.imgur.com/i9Ds1kr.jpg)

@@ -110,6 +110,7 @@ const PixiOverlay = ({ markers }) => {
           position,
           popup,
           tooltip,
+          tooltipOptions,
           popupOpen,
           markerSpriteAnchor,
         } = marker;
@@ -194,6 +195,7 @@ const PixiOverlay = ({ markers }) => {
               offset: [0, -35],
               position,
               content: tooltip,
+              tooltipOptions: tooltipOptions || {}
             });
           });
 
@@ -223,7 +225,7 @@ const PixiOverlay = ({ markers }) => {
         !openedPopupData ||
         openedPopupData.id !== openedTooltipData.id)
     ) {
-      setOpenedTooltip(openPopup(map, openedTooltipData));
+      setOpenedTooltip(openTooltip(map, openedTooltipData));
     }
 
     // we don't want to reload when openedTooltip changes as we'd get a loop
@@ -265,6 +267,15 @@ function openPopup(map, data, extraOptions = {}, isPopup) {
   }
 
   return popup;
+}
+
+function openTooltip(map, data) {
+  const tooltip = L.tooltip(Object.assign({ offset: data.offset }, data.tooltipOptions))
+    .setLatLng(data.position)
+    .setContent(data.content)
+    .addTo(map);
+
+  return tooltip;
 }
 
 function getDefaultIcon(color) {
