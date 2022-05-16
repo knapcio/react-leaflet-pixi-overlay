@@ -113,6 +113,7 @@ const PixiOverlay = ({ markers }) => {
           tooltipOptions,
           popupOpen,
           markerSpriteAnchor,
+          angle
         } = marker;
 
         const resolvedIconId = iconId || iconColor;
@@ -140,6 +141,8 @@ const PixiOverlay = ({ markers }) => {
         const markerCoords = project(position);
         markerSprite.x = markerCoords.x;
         markerSprite.y = markerCoords.y;
+        
+        markerSprite.angle = angle;
 
         markerSprite.scale.set(1 / scale);
 
