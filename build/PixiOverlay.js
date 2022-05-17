@@ -174,7 +174,8 @@ var PixiOverlay = function PixiOverlay(_ref) {
             tooltip = marker.tooltip,
             tooltipOptions = marker.tooltipOptions,
             popupOpen = marker.popupOpen,
-            markerSpriteAnchor = marker.markerSpriteAnchor;
+            markerSpriteAnchor = marker.markerSpriteAnchor,
+            angle = marker.angle;
 
 
         var resolvedIconId = iconId || iconColor;
@@ -198,6 +199,8 @@ var PixiOverlay = function PixiOverlay(_ref) {
         var markerCoords = project(position);
         markerSprite.x = markerCoords.x;
         markerSprite.y = markerCoords.y;
+
+        markerSprite.angle = angle;
 
         markerSprite.scale.set(1 / scale);
 
