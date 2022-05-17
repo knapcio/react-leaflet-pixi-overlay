@@ -141,8 +141,11 @@ const PixiOverlay = ({ markers }) => {
         const markerCoords = project(position);
         markerSprite.x = markerCoords.x;
         markerSprite.y = markerCoords.y;
+
+        if (angle) {
+          markerSprite.angle = angle;
+        }
         
-        markerSprite.angle = angle;
 
         markerSprite.scale.set(1 / scale);
 
