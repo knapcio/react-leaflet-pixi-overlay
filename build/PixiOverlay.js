@@ -200,7 +200,9 @@ var PixiOverlay = function PixiOverlay(_ref) {
         markerSprite.x = markerCoords.x;
         markerSprite.y = markerCoords.y;
 
-        markerSprite.angle = angle;
+        if (angle) {
+          markerSprite.angle = angle;
+        }
 
         markerSprite.scale.set(1 / scale);
 
