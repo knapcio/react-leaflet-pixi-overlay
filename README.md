@@ -20,11 +20,27 @@ Render **tens of thousands of markers** smoothly where DOM-based markers give up
 
 ## Installation
 
+Use whichever package manager your app already uses. Pick one:
+
+**npm**
+
 ```sh
 npm install react-leaflet-pixi-overlay leaflet pixi.js react react-dom react-leaflet
 ```
 
-> `pixi.js` is a peer dependency. npm 7+ installs it automatically; with yarn classic or pnpm add it explicitly.
+**Yarn**
+
+```sh
+yarn add react-leaflet-pixi-overlay leaflet pixi.js react react-dom react-leaflet
+```
+
+**pnpm**
+
+```sh
+pnpm add react-leaflet-pixi-overlay leaflet pixi.js react react-dom react-leaflet
+```
+
+> `leaflet`, `pixi.js`, `react`, `react-dom`, and `react-leaflet` are peer dependencies. If your app already has compatible versions installed, keep those and add only the missing packages.
 
 ## Compatibility
 
