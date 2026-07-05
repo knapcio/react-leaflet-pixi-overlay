@@ -40,9 +40,25 @@ body {
   font-size: 0.9rem;
 }
 
-.nav a.active {
+.nav a.active,
+.nav .code-toggle.active {
   background: #2563eb;
   color: #fff;
+}
+
+.nav .code-toggle {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #333;
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.nav .code-toggle:hover {
+  border-color: #2563eb;
 }
 
 .nav .github {
@@ -54,11 +70,67 @@ body {
 .demo {
   position: relative;
   flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
 }
 
-.demo .leaflet-container {
+.demo.with-code {
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 42vw);
+}
+
+.demo-stage {
+  position: relative;
+  min-height: 0;
+}
+
+.demo-stage .leaflet-container {
   height: 100%;
   width: 100%;
+}
+
+.code-panel {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  border-left: 1px solid #d1d5db;
+  background: #111827;
+  color: #e5e7eb;
+}
+
+.code-panel-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid #374151;
+  background: #0f172a;
+  font-size: 0.82rem;
+}
+
+.code-panel-header a {
+  color: #93c5fd;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.code-panel pre {
+  margin: 0;
+  padding: 0.9rem;
+  overflow: visible;
+}
+
+.code-panel code {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    monospace;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  white-space: pre;
 }
 
 .status {
@@ -89,4 +161,29 @@ body {
 
 .popup-card button:hover {
   background: #eff6ff;
+}
+
+@media (max-width: 900px) {
+  .nav {
+    overflow-x: auto;
+  }
+
+  .nav h1 {
+    flex: 0 0 auto;
+  }
+
+  .nav a,
+  .nav .code-toggle {
+    flex: 0 0 auto;
+  }
+
+  .demo.with-code {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(320px, 55vh) minmax(0, 1fr);
+  }
+
+  .code-panel {
+    border-left: 0;
+    border-top: 1px solid #d1d5db;
+  }
 }

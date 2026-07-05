@@ -4,13 +4,13 @@ import PixiOverlay from "react-leaflet-pixi-overlay";
 import type { PixiOverlayMarker } from "react-leaflet-pixi-overlay";
 import { OsmTiles } from "./tiles";
 
-const CENTER: [number, number] = [51.505, -0.09];
+const CENTER: [number, number] = [51.5079, -0.0877];
 
 const InteractivePopup = () => {
   const [count, setCount] = useState(0);
   return (
     <div className="popup-card">
-      <strong>London</strong>
+      <strong>London Bridge</strong>
       <p>This popup is real React — state and handlers work.</p>
       <button data-testid="popup-button" onClick={() => setCount((c) => c + 1)}>
         Clicked {count} times
@@ -25,27 +25,35 @@ const BasicDemo = () => {
   const markers = useMemo<PixiOverlayMarker[]>(
     () => [
       {
-        id: "center",
+        id: "london-bridge",
         position: CENTER,
         iconColor: "#2563eb",
         popup: <InteractivePopup />,
-        tooltip: "Click me!",
+        tooltip: "London Bridge",
         onClick: (id) => setSelected(id),
       },
       {
-        id: "red",
-        position: [51.51, -0.1],
+        id: "st-pauls",
+        position: [51.5138, -0.0984],
         iconColor: "red",
-        popup: "A plain string popup",
-        tooltip: "Red marker",
+        popup: "St Paul's Cathedral",
+        tooltip: "St Paul's Cathedral",
+        onClick: (id) => setSelected(id),
+      },
+      {
+        id: "tower-bridge",
+        position: [51.5055, -0.0754],
+        iconColor: "green",
+        popup: "Tower Bridge",
+        tooltip: "Tower Bridge",
         onClick: (id) => setSelected(id),
       },
       {
         id: "rotated",
-        position: [51.5, -0.075],
-        iconColor: "green",
+        position: [51.5033, -0.1195],
+        iconColor: "#9333ea",
         angle: 45,
-        scale: 1.4,
+        scale: 1.25,
         tooltip: "Rotated & scaled",
         onMouseOver: (id) => console.log("hover", id),
       },
