@@ -10,8 +10,16 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "isolatedModules": true,
+    "baseUrl": ".",
     "paths": {
-      "react-leaflet-pixi-overlay": ["../src/index.ts"]
+      "leaflet": ["./node_modules/@types/leaflet"],
+      "pixi.js": ["./node_modules/pixi.js/lib/index.d.ts"],
+      "react": ["./node_modules/@types/react"],
+      "react-dom": ["./node_modules/@types/react-dom"],
+      "react/jsx-runtime": ["./node_modules/@types/react/jsx-runtime"],
+      "react-leaflet": ["./node_modules/react-leaflet/lib/index.d.ts"],
+      "react-leaflet-pixi-overlay": ["../src/index.ts"],
+      "supercluster": ["./node_modules/@types/supercluster"]
     }
   },
   "include": ["src", "e2e", "vite.config.ts", "playwright.config.ts", "../src"]
