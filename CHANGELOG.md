@@ -1,5 +1,17 @@
 # react-leaflet-pixi-overlay
 
+## 4.0.2
+
+### Patch Changes
+
+- [`ee4d284`](https://github.com/knapcio/react-leaflet-pixi-overlay/commit/ee4d284d3f6d3f0c6427381bad2f948abf452bc9) Thanks [@knapcio](https://github.com/knapcio)! - Fix the renderer resolution being multiplied by the device pixel ratio on PixiJS v8.
+
+  The vendored layer's degraded-drawing-buffer correction compares
+  `gl.drawingBufferWidth` with `renderer.width`, which is physical pixels on
+  PixiJS <= 7 but logical pixels on v8 — so on v8 every resize silently doubled
+  the intended resolution (4x the pixels on retina displays). The correction now
+  only runs on PixiJS <= 7.
+
 ## 4.0.1
 
 ### Patch Changes
