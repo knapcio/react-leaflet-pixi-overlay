@@ -10,6 +10,13 @@
 //   renderer.view, PIXI.isWebGLSupported instead of PIXI.utils.isWebGLSupported,
 //   numeric major-version parsing instead of string comparison
 // - added whenReady() so consumers can wait for the (possibly async) renderer
+// - update-after-interrupted-zoom fix: _update used to silently drop the event
+//   when it arrived while map._animatingZoom was still set (rapid wheel/trackpad
+//   zooms interleave moveend with the next animation). If that was the LAST
+//   event of the gesture, the overlay stayed frozen at a stale view — markers
+//   appeared shifted until the next pan/resize. _update now retries on the next
+//   animation frame until the animation flag clears, and getEvents also maps
+//   zoomend -> _update as a deterministic catch-up.
 
 import L from "leaflet";
 import * as PIXI from "pixi.js";
@@ -252,6 +259,7 @@ const PixiOverlayLayer = L.Layer.extend({
   },
 
   onRemove: function () {
+    this._cancelUpdateRetry();
     L.DomUtil.remove(this._container);
   },
 
@@ -260,6 +268,7 @@ const PixiOverlayLayer = L.Layer.extend({
       zoom: this._onZoom,
       move: this._onMove,
       moveend: this._update,
+      zoomend: this._update,
     };
     if (this._zoomAnimated) {
       events.zoomanim = this._onAnimZoom;
@@ -313,13 +322,34 @@ const PixiOverlayLayer = L.Layer.extend({
     this._enableLeafletRounding();
   },
 
+  _scheduleUpdateRetry: function (e) {
+    if (this._updateRetryFrame) return;
+    const layer = this;
+    this._updateRetryFrame = L.Util.requestAnimFrame(function () {
+      layer._updateRetryFrame = null;
+      layer._update(e);
+    });
+  },
+
+  _cancelUpdateRetry: function () {
+    if (this._updateRetryFrame) {
+      L.Util.cancelAnimFrame(this._updateRetryFrame);
+      this._updateRetryFrame = null;
+    }
+  },
+
   _update: function (e) {
-    if (!this._rendererReady || !this._map) {
+    if (!this._rendererReady || !this._map || this._destroyed) {
+      this._cancelUpdateRetry();
       return;
     }
     if (this._map._animatingZoom && this._bounds) {
+      // Never drop the update: if the zoom animation is still running (or the
+      // flag is stale), poll each frame until it clears, then do the real work.
+      this._scheduleUpdateRetry(e);
       return;
     }
+    this._cancelUpdateRetry();
 
     // Update pixel bounds of renderer container
     const p = this.options.padding,
@@ -408,6 +438,7 @@ const PixiOverlayLayer = L.Layer.extend({
   },
 
   _destroy: function () {
+    this._cancelUpdateRetry();
     const layer = this;
     this._whenRendererReady(function () {
       if (layer._renderer) {
