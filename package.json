@@ -94,7 +94,8 @@
     "vitest": "^3.0.0"
   },
   "resolutions": {
-    "vite": "6.4.3"
+    "vite": "6.4.3",
+    "esbuild": "^0.28.1"
   },
   "engines": {
     "node": ">=18"
