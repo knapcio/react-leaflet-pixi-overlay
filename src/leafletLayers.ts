@@ -65,6 +65,10 @@ export function buildPopupOptions(data: PopupData): PopupOptions {
 export function buildTooltipOptions(data: TooltipData): TooltipOptions {
   return {
     offset: data.offset,
+    // Leaflet's default direction "auto" anchors the tooltip beside the
+    // point; combined with the -35px lift (pin height) it floats detached at
+    // the marker's upper left/right. "top" centers it above the pin head.
+    direction: "top",
     ...data.tooltipOptions,
   };
 }

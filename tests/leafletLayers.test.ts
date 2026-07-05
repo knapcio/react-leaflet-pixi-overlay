@@ -60,15 +60,25 @@ describe("buildPopupOptions", () => {
 });
 
 describe("buildTooltipOptions", () => {
+  // regression: without an explicit direction, Leaflet's "auto" put the
+  // tooltip beside the pin, where the -35px lift left it floating detached
+  it("defaults direction to top so the tooltip sits above the pin", () => {
+    const data = getTooltipData({ ...baseMarker, tooltip: "hi" })!;
+    expect(buildTooltipOptions(data)).toMatchObject({
+      offset: [0, -35],
+      direction: "top",
+    });
+  });
+
   it("merges user tooltip options over defaults", () => {
     const data = getTooltipData({
       ...baseMarker,
       tooltip: "hi",
-      tooltipOptions: { direction: "top" },
+      tooltipOptions: { direction: "right", offset: [9, 9] },
     })!;
     expect(buildTooltipOptions(data)).toMatchObject({
-      offset: [0, -35],
-      direction: "top",
+      direction: "right",
+      offset: [9, 9],
     });
   });
 });

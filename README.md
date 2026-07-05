@@ -116,7 +116,7 @@ const App = () => {
 | `onMouseOut`         |    no    |                                                          `(id) => void`; pointer left the marker |
 | `tooltip`            |    no    |                                                            String, HTMLElement, or **ReactNode** |
 | `tooltipOffset`      |    no    |                                                              `[x, y]` offset, default `[0, -35]` |
-| `tooltipOptions`     |    no    |                                                                         `Leaflet.TooltipOptions` |
+| `tooltipOptions`     |    no    |                                          `Leaflet.TooltipOptions` (default direction is `"top"`) |
 | `markerSpriteAnchor` |    no    |                                          Sprite anchor, default `[0.5, 1]` (pin tip at position) |
 | `angle`              |    no    |                                                                              Rotation in degrees |
 | `scale`              |    no    |                              Extra scale factor on top of the zoom-invariant scaling (default 1) |
