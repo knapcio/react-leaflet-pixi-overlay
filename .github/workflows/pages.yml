@@ -25,11 +25,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/configure-pages@v6
       - run: yarn install --frozen-lockfile
       - run: yarn build
         env:
           BASE_PATH: /react-leaflet-pixi-overlay/
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: examples/dist
 
@@ -41,4 +42,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
