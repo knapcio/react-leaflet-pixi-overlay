@@ -1,5 +1,16 @@
 # react-leaflet-pixi-overlay
 
+## 4.0.3
+
+### Patch Changes
+
+- [`d1709ab`](https://github.com/knapcio/react-leaflet-pixi-overlay/commit/d1709ab73d4ef783672bf4b2efa3accf7353b649) Thanks [@knapcio](https://github.com/knapcio)! - Tooltips now default to `direction: "top"`, centered above the marker.
+
+  Leaflet's default `direction: "auto"` anchors the tooltip beside the point,
+  and combined with the default `[0, -35]` offset it floated detached at the
+  marker's upper left/right. Set `tooltipOptions.direction` to restore any other
+  placement.
+
 ## 4.0.2
 
 ### Patch Changes
