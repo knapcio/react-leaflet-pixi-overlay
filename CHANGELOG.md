@@ -1,5 +1,19 @@
 # react-leaflet-pixi-overlay
 
+## 4.0.1
+
+### Patch Changes
+
+- [`9623519`](https://github.com/knapcio/react-leaflet-pixi-overlay/commit/96235192b3e2a16be1ffc0c6da1cfdaa3d909e1a) Thanks [@knapcio](https://github.com/knapcio)! - Fix markers freezing at a stale position after an interrupted zoom animation.
+
+  When a `moveend` arrived while Leaflet still had `map._animatingZoom` set (easy
+  to hit with rapid mouse-wheel or trackpad zooming), the overlay dropped that
+  update. If it was the last event of the gesture, the Pixi canvas stayed frozen
+  at the previous view and markers appeared shifted from their coordinates until
+  the next pan or resize. The overlay now retries the skipped update every
+  animation frame until the zoom animation ends, and also updates on `zoomend` as
+  a deterministic catch-up.
+
 ## 4.0.0
 
 ### Major Changes
