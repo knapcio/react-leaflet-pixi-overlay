@@ -1,6 +1,6 @@
 {
   "name": "react-leaflet-pixi-overlay",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "High-performance React Leaflet marker overlay rendered with PixiJS (Leaflet.PixiOverlay).",
   "type": "module",
   "main": "./dist/index.cjs",
