@@ -10,6 +10,11 @@
 //   renderer.view, PIXI.isWebGLSupported instead of PIXI.utils.isWebGLSupported,
 //   numeric major-version parsing instead of string comparison
 // - added whenReady() so consumers can wait for the (possibly async) renderer
+// - v8 resolution fix: the degraded-drawing-buffer correction in _update
+//   compares gl.drawingBufferWidth (physical px) with renderer.width, which is
+//   physical on PixiJS <= 7 but LOGICAL on v8 — on v8 it silently multiplied
+//   the renderer resolution by the device pixel ratio (4x pixels on retina).
+//   The correction now only runs on PixiJS <= 7.
 // - update-after-interrupted-zoom fix: _update used to silently drop the event
 //   when it arrived while map._animatingZoom was still set (rapid wheel/trackpad
 //   zooms interleave moveend with the next animation). If that was the LAST
@@ -385,7 +390,11 @@ const PixiOverlayLayer = L.Layer.extend({
       this._renderer.resize(size.x, size.y);
       view.style.width = size.x + "px";
       view.style.height = size.y + "px";
-      if (this._renderer.gl) {
+      // Degraded-drawing-buffer correction (GPU clamped the requested canvas
+      // size). Only valid on PixiJS <= 7, where renderer.width is in physical
+      // pixels; on v8 renderer.width is logical, so the comparison would
+      // multiply the resolution by the device pixel ratio on every resize.
+      if (PIXI_MAJOR < 8 && this._renderer.gl) {
         const gl = this._renderer.gl;
         if (gl.drawingBufferWidth !== this._renderer.width) {
           const resolution =
