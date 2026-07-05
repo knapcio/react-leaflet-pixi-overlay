@@ -1,11 +1,41 @@
 {
   "name": "react-leaflet-pixi-overlay",
-  "version": "3.0.2",
-  "description": "",
-  "main": "build/PixiOverlay.js",
+  "version": "4.0.0",
+  "description": "High-performance React Leaflet marker overlay rendered with PixiJS (Leaflet.PixiOverlay).",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d build"
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "verify": "yarn typecheck && yarn test && yarn build && yarn pack:check",
+    "pack:check": "npm pack --dry-run",
+    "prepublishOnly": "yarn build",
+    "release": "changeset publish"
   },
   "repository": {
     "type": "git",
@@ -13,34 +43,58 @@
   },
   "author": "Zbigniew Majewski",
   "license": "MIT",
+  "keywords": [
+    "leaflet",
+    "pixi.js",
+    "react",
+    "react-leaflet",
+    "map",
+    "overlay",
+    "markers",
+    "cluster",
+    "webgl"
+  ],
   "bugs": {
     "url": "https://github.com/knapcio/react-leaflet-pixi-overlay/issues"
   },
   "homepage": "https://github.com/knapcio/react-leaflet-pixi-overlay#readme",
   "prettier": {
-    "prettier.eslintIntegration": false,
     "semi": true,
     "trailingComma": "all",
     "singleQuote": false,
-    "printWidth": 80,
+    "printWidth": 88,
     "tabWidth": 2
   },
   "dependencies": {
-    "leaflet-pixi-overlay": "^1.8.1",
-    "pixi.js": "^5.2.0"
+    "supercluster": "^8.0.1"
   },
   "peerDependencies": {
-    "leaflet": ">=1.7.1",
-    "react": ">=16.8.0",
-    "react-leaflet": ">=3.2.2"
+    "leaflet": ">=1.7.1 <2",
+    "pixi.js": ">=5 <9",
+    "react": ">=17 <20",
+    "react-dom": ">=17 <20",
+    "react-leaflet": ">=3 <6"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "leaflet": "^1.7.1",
-    "react": "^16.12.0",
-    "react-dom": "16.12.0",
-    "react-leaflet": "^3.2.2"
+    "@changesets/changelog-github": "^0.7.0",
+    "@changesets/cli": "^2.27.10",
+    "@types/leaflet": "^1.9.21",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@types/supercluster": "^7.1.3",
+    "jsdom": "^25.0.1",
+    "leaflet": "^1.9.4",
+    "pixi.js": "^7.4.3",
+    "prettier": "^3.4.2",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-leaflet": "^5.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.9.0",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "publishConfig": {
     "access": "public",

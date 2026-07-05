@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #ddd;
+  background: #fafafa;
+}
+
+.nav h1 {
+  font-size: 1rem;
+  margin: 0 1rem 0 0;
+}
+
+.nav a {
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.nav a.active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.nav .github {
+  margin-left: auto;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.demo {
+  position: relative;
+  flex: 1;
+}
+
+.demo .leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.status {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.popup-card {
+  min-width: 140px;
+}
+
+.popup-card button {
+  margin-top: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid #2563eb;
+  background: #fff;
+  color: #2563eb;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup-card button:hover {
+  background: #eff6ff;
+}

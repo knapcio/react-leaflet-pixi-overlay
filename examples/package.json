@@ -1,0 +1,32 @@
+{
+  "name": "react-leaflet-pixi-overlay-examples",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "build": "vite build",
+    "preview": "vite preview",
+    "e2e": "playwright test"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "pixi.js": "^8.6.6",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-leaflet": "^5.0.0",
+    "supercluster": "^8.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/leaflet": "^1.9.21",
+    "@types/node": "^26.1.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@types/supercluster": "^7.1.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.9.0",
+    "vite": "^6.0.7"
+  }
+}
