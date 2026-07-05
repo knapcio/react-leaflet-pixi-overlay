@@ -30,9 +30,9 @@ npm install react-leaflet-pixi-overlay leaflet pixi.js react react-dom react-lea
 
 | react-leaflet | react | pixi.js | react-leaflet-pixi-overlay |
 | ------------- | ----- | ------- | -------------------------- |
-| v5.x          | v19.x | v5–v8   | v5.x                       |
-| v4.x          | v18.x | v5–v8   | v5.x                       |
-| v3.x          | v17.x | v5–v8   | v3.x–v5.x                  |
+| v5.x          | v19.x | v5–v8   | v4.x                       |
+| v4.x          | v18.x | v5–v8   | v4.x                       |
+| v3.x          | v17.x | v5–v8   | v3.x–v4.x                  |
 | v2.x          | v16.x | v4–v5   | v1.x                       |
 
 ## Quick start
