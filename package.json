@@ -91,7 +91,7 @@
     "react-leaflet": "^5.0.0",
     "tsup": "^8.3.5",
     "typescript": "^5.9.0",
-    "vitest": "^3.0.0"
+    "vitest": "^4.1.11"
   },
   "resolutions": {
     "vite": "6.4.3",
